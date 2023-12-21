@@ -14,3 +14,4 @@ seaborn==0.13.0
 Shapely==2.0.2
 statsmodels==0.14.0
 streamlit==1.29.0
+tensorflow
