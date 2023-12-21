@@ -1,7 +1,7 @@
 import streamlit as st
 from io import BytesIO
 import base64
-from cassandra.cluster import Cluster
+# from cassandra.cluster import Cluster
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import OneHotEncoder
@@ -11,9 +11,9 @@ import folium
 from folium.plugins import MarkerCluster
 import geopandas as gpd
 from shapely.geometry import Point
-from pyspark.sql import SparkSession
-from pyspark.sql import functions as F
-from pyspark.ml.feature import VectorAssembler
+# from pyspark.sql import SparkSession
+# from pyspark.sql import functions as F
+# from pyspark.ml.feature import VectorAssembler
 from statsmodels.tsa.arima.model import ARIMA
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -390,43 +390,43 @@ def exploratory_transactions(df):
     st.write("")  # Add a space in the UI
     return ""
 
-def transactions_prediction():
-    #df = pd.read_csv("C://Kasyap//projects//bigdata//data//transactions.csv")
-    # Create a Spark session
-    spark = SparkSession.builder.appName("WeeklyForecast").getOrCreate()
+# def transactions_prediction():
+#     #df = pd.read_csv("C://Kasyap//projects//bigdata//data//transactions.csv")
+#     # Create a Spark session
+#     spark = SparkSession.builder.appName("WeeklyForecast").getOrCreate()
 
-    # Read data from CSV file
-    csv_path = "C://Kasyap//projects//bigdata//data//transactions.csv"
-    df = spark.read.csv(csv_path, header=True, inferSchema=True)
+#     # Read data from CSV file
+#     csv_path = "C://Kasyap//projects//bigdata//data//transactions.csv"
+#     df = spark.read.csv(csv_path, header=True, inferSchema=True)
 
-    # Convert the date column to a TimestampType
-    df = df.withColumn("date", F.to_timestamp("date", "dd-MM-yyyy"))
+#     # Convert the date column to a TimestampType
+#     df = df.withColumn("date", F.to_timestamp("date", "dd-MM-yyyy"))
 
-    # Group transactions by store_nbr and week, summing the transactions
-    weekly_transactions = (
-        df.groupBy("store_nbr", F.window("date", "1 week"))
-        .agg(F.sum("transactions").alias("transactions"))
-        .select("store_nbr", "window.start", "transactions")
-        .withColumnRenamed("start", "date")
-        .toPandas()
-    )
+#     # Group transactions by store_nbr and week, summing the transactions
+#     weekly_transactions = (
+#         df.groupBy("store_nbr", F.window("date", "1 week"))
+#         .agg(F.sum("transactions").alias("transactions"))
+#         .select("store_nbr", "window.start", "transactions")
+#         .withColumnRenamed("start", "date")
+#         .toPandas()
+#     )
 
-    # Perform ARIMA modeling for each store_nbr
-    for store_nbr in df.select("store_nbr").distinct().rdd.flatMap(lambda x: x).collect():
-        store_data = weekly_transactions[weekly_transactions["store_nbr"] == store_nbr].set_index("date")
+#     # Perform ARIMA modeling for each store_nbr
+#     for store_nbr in df.select("store_nbr").distinct().rdd.flatMap(lambda x: x).collect():
+#         store_data = weekly_transactions[weekly_transactions["store_nbr"] == store_nbr].set_index("date")
         
-        # Fit ARIMA model
-        model = ARIMA(store_data["transactions"], order=(1, 1, 1))
-        fit_model = model.fit()
+#         # Fit ARIMA model
+#         model = ARIMA(store_data["transactions"], order=(1, 1, 1))
+#         fit_model = model.fit()
 
-        # Make predictions for the next week
-        forecast = fit_model.get_forecast(steps=1)
-        predicted_value = forecast.predicted_mean.values[0]
+#         # Make predictions for the next week
+#         forecast = fit_model.get_forecast(steps=1)
+#         predicted_value = forecast.predicted_mean.values[0]
 
-        print(f"Forecast for Store {store_nbr}: {predicted_value}")
+#         print(f"Forecast for Store {store_nbr}: {predicted_value}")
 
-    # Stop the Spark session
-    spark.stop()
+#     # Stop the Spark session
+#     spark.stop()
 
 def transactions_prediction_final(df):
     # Group transactions by store_nbr and date, summing the transactions
