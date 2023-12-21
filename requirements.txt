@@ -1,3 +1,4 @@
+tensorflow==2.15
 cassandra_driver==3.28.0
 confluent_kafka==2.3.0
 Flask==2.2.5
@@ -14,4 +15,4 @@ seaborn==0.13.0
 Shapely==2.0.2
 statsmodels==0.14.0
 streamlit==1.29.0
-tensorflow
+
