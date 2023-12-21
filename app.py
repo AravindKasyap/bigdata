@@ -63,7 +63,7 @@ def clustering(df):
         df.shape
 
         df["Total_Price"] = df["UnitPrice"] * df["Quantity"]
-        df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
+        df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"],format="%d-%m-%Y %H:%M")
 
         # Group by 'InvoiceDate' and 'InvoiceNo', then sum the 'Total_Price'
         grouped_df = (
