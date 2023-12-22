@@ -478,7 +478,7 @@ def transactions_prediction_final(df):
     # Email credentials
     sender_email = "aravindkasyap317@gmail.com"
     sender_password = "uvoa gphx jxrj hczv"
-    receiver_email = "aravindkasyap317@gmail.com"  # Replace with the recipient's email
+    receiver_email = "h20220815@pilani.bits-pilani.ac.in"  # Replace with the recipient's email
 
     # Email content
     subject = "Predicted Demand details for each store"
@@ -574,7 +574,7 @@ def transactions_prediction_analysis():
 # Main Streamlit app
 def main():
     st.markdown("<h1 style='text-align: center;'>Big Data Analytics project</h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center;'>Supply chain Analytics fro Inventory and retail management</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'>Supply chain Analytics for Inventory and retail management</h3>", unsafe_allow_html=True)
     # st.title("Big Data Analytics project")
     # st.subheader(" ")
 
