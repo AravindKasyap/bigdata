@@ -31,7 +31,7 @@ def send_email(results_df):
     # Email credentials
     sender_email = "aravindkasyap317@gmail.com"
     sender_password = "uvoa gphx jxrj hczv"
-    receiver_email = "aravindkasyap317@gmail.com"  # Replace with the recipient's email
+    receiver_email = "srivenukavilla@gmail.com"  # Replace with the recipient's email
 
     # Email content
     subject = "Predicted Demand details for each store"
@@ -478,7 +478,7 @@ def transactions_prediction_final(df):
     # Email credentials
     sender_email = "aravindkasyap317@gmail.com"
     sender_password = "uvoa gphx jxrj hczv"
-    receiver_email = "h20220815@pilani.bits-pilani.ac.in"  # Replace with the recipient's email
+    receiver_email = "srivenukavilla@gmail.com"  # Replace with the recipient's email
 
     # Email content
     subject = "Predicted Demand details for each store"
